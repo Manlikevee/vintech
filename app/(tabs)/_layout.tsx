@@ -1,13 +1,14 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import  EvilIcons  from '@expo/vector-icons/EvilIcons';
+import  SimpleLineIcons  from '@expo/vector-icons/SimpleLineIcons';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
-
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
+import { Text, View } from '@/components/Themed';
+import Avatar from '@/components/Reusables/ui/Avatar'
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof EvilIcons>['name'];
@@ -37,15 +38,33 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
+          title: 'Home',
+          
           tabBarIcon: ({ color }) => <TabBarIcon name="navicon" color={color} />,
+          
+          tabBarLabelStyle: {
+            
+            fontSize: 12, // Set the font size for the label specifically for this screen
+          },
+          headerLeft: () => (
+            <Link href="/modal" asChild>
+              <Pressable>
+                {({ pressed }) => (
+<View>
+<Avatar/>
+</View>
+
+                )}
+              </Pressable>
+            </Link>
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
+                  <SimpleLineIcons
+                    name="logout"
+                    size={18}
                     color={Colors[colorScheme ?? 'light'].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
@@ -58,24 +77,37 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
+          title: 'Cards',
           tabBarIcon: ({ color }) => <TabBarIcon name="credit-card" color={color} />,
+          tabBarLabelStyle: {
+
+            fontSize: 12, // Set the font size for the label specifically for this screen
+          },
         }}
       />
 
 <Tabs.Screen
         name="history"
         options={{
-          title: 'History',
-          tabBarIcon: ({ color }) => <TabBarIcon name="retweet" color={color} />,
+          title: 'Payment',
+          tabBarIcon: ({ color }) => <TabBarIcon name="link" color={color} />,
+          tabBarLabelStyle: {
+
+            fontSize: 12, // Set the font size for the label specifically for this screen
+          },
         }}
       />
 
 <Tabs.Screen
         name="cards"
         options={{
-          title: 'Cards',
-          tabBarIcon: ({ color }) => <TabBarIcon name="archive" color={color} />,
+          title: 'History',
+          tabBarIcon: ({ color }) => <TabBarIcon name="redo" color={color} />,
+                tabBarLabelStyle: {
+
+        fontSize: 12, // Set the font size for the label specifically for this screen
+      },
+
         }}
       />
 
@@ -84,6 +116,10 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          tabBarLabelStyle: {
+
+            fontSize: 12, // Set the font size for the label specifically for this screen
+          },
         }}
       />
     </Tabs>
