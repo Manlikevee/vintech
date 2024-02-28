@@ -4,9 +4,12 @@ import React from 'react'
 
 const Avatar = () => {
   return (
-    <View style={styles.ava} lightColor="#fff" darkColor="#1d1e22">
-      <Text style={styles.avatext} lightColor="#000" darkColor="#ffffff99">VO</Text>
-    </View>
+    <>
+         <View style={styles.ava} lightColor="#fff" darkColor="#1d1e22">
+     <Text style={styles.avatext} lightColor="#000" darkColor="#ffffff99">VO</Text>
+   </View>
+    </>
+
   )
 }
 
