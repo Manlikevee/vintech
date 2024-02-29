@@ -9,7 +9,8 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
     borderColor: '#ececec',
-    icontext: '#00000099'
+    icontext: '#00000099',
+    login: '#fff'
   },
   dark: {
     text: '#aeaeae',
@@ -18,6 +19,7 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
     borderColor: '#2b2b2b',
-    icontext: '#2b2b2b'
+    icontext: '#2b2b2b',
+    login: '#0c0c0c'
   },
 };

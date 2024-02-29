@@ -22,6 +22,10 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     Satoshi: require('../assets/fonts/Satoshi-Light.otf'),
     Satoshimid: require('../assets/fonts/Satoshi-Regular.otf'),
+    SoraBold: require('../assets/fonts/Sora-Bold.ttf'),
+    Soramid: require('../assets/fonts/Sora-Regular.ttf'),
+    Soraxxl: require('../assets/fonts/Sora-ExtraBold.ttf'),
+    flamabold: require('../assets/fonts/Flama-Bold.otf'),
     ...FontAwesome.font,
   });
 
@@ -43,16 +47,19 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+
+
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-
+  const myinitial = "(auth)"
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName="(onboarding)">
+      <Stack initialRouteName={myinitial}>
  
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="(onboarding)"  options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)"  options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );

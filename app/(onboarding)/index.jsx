@@ -3,38 +3,66 @@ import React from 'react'
 import { Link, Stack, useNavigation } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import Onboarding from 'react-native-onboarding-swiper';
-
+import { router } from 'expo-router';
 const {width, height} = Dimensions.get('window')
+
+export function mylogin() {
+  router.replace('/(auth)/login');
+}
 
 const index = () => {
   return (
     <View style={{ flex: 1,  }}>
 <Onboarding
+bottomBarHighlight={false}
 containerStyles={{paddingHorizontal:16,}}
+titleStyles={{ 
+fontFamily: 'Satoshi',
+fontWeight: 'bold',
+fontSize: 25
+
+}}
+onDone={mylogin}
+onSkip={mylogin}
   pages={[
+   
     {
-      backgroundColor: '#90B8F8',
+      backgroundColor: '#fff',
       image: (
    
         <LottieView style={styles.lottie}
 
-source={require('../../assets/lottieimg/one.json')} autoPlay loop />
+source={require('../../assets/lottieimg/five.json')} autoPlay loop />
    
       ),
-      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: 'Quick Sign-up Process',
+      subtitle: 'Register easily in just a few steps. Get started now!',
     },
+
+   
+//     {
+//       backgroundColor: '#90B8F8',
+//       image: (
+   
+//         <LottieView style={styles.lottie}
+
+// source={require('../../assets/lottieimg/one.json')} autoPlay loop />
+   
+//       ),
+//       title: 'Dashboard Insights',
+//       subtitle: 'View detailed analytics and track your progress effortlessly.',
+//     },
     {
-      backgroundColor: '#667761',
+      backgroundColor: '#CBBCF6',
       image: (
    
         <LottieView style={styles.lottie}
 
-source={require('../../assets/lottieimg/two.json')} autoPlay loop />
+source={require('../../assets/lottieimg/exc.json')} autoPlay loop />
    
       ),
-      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: 'Multi-Currency Support',
+      subtitle: 'Seamlessly transact in various currencies with ease and convenience.',
     },
 
     {
@@ -46,8 +74,8 @@ source={require('../../assets/lottieimg/two.json')} autoPlay loop />
 source={require('../../assets/lottieimg/four.json')} autoPlay loop />
    
       ),
-      title:  <Text>beeee </Text>,
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title:  'Secure Transactions',
+      subtitle: 'Your data is always protected. Experience worry-free transactions today.',
     },
     {
       backgroundColor: '#fff',
@@ -57,23 +85,22 @@ source={require('../../assets/lottieimg/four.json')} autoPlay loop />
 
 source={require('../../assets/lottieimg/six.json')} autoPlay loop />
    
-      ),      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      ),      title: 'Fast & Seamless Payments',
+      subtitle: 'Experience swift and hassle-free transactions anytime, anywhere.',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: '#5E63B6',
       image: (
    
         <LottieView style={styles.lottie}
 
-source={require('../../assets/lottieimg/five.json')} autoPlay loop />
+source={require('../../assets/lottieimg/card.json')} autoPlay loop />
    
-      ),
-      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      ),      title: 'Virtual & Physical Cards',
+      subtitle: 'Enjoy the flexibility of virtual and physical cards for your needs.',
     },
 
- 
+
 
     
   ]}
@@ -90,5 +117,10 @@ const styles = StyleSheet.create({
   lottie:{
     width: width * 0.9,
     height: width  * 0.9,
-  }
+  },
+  gtext:{
+    fontSize: 25,
+    fontFamily: 'Satoshimid',
+    fontWeight: '700',
+      },
 })
