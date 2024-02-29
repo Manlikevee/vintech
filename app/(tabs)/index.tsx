@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Image, Pressable, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Image, Pressable, TouchableOpacity, Vibration } from 'react-native';
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import EditScreenInfo from '@/components/EditScreenInfo';
@@ -8,6 +8,12 @@ import Balance from '@/components/Reusables/ui/Balance'
 import ServiceList from '@/components/Servicelist'
 import Blocks from '@/components/Blocks'
 export default function TabOneScreen() {
+
+
+  const handleButtonPress = () => {
+    // Vibrate for 500ms
+    Vibration.vibrate(20);
+  };
 
   const blockData = [
     {
@@ -20,19 +26,19 @@ export default function TabOneScreen() {
       title: "Deposit into account",
       subtitle: "Make a deposit with confidence.",
       iconName: "briefcase",
-      onPress: () => console.log('Pressed Block 2'),
+      onPress:  handleButtonPress,
     },
     {
       title: "Set-up virtual card",
       subtitle: "Establish your virtual card in a few steps",
       iconName: "credit-card",
-      onPress: () => console.log('Pressed Block 1'),
+      onPress:  handleButtonPress,
     },
     {
       title: "Link bank account",
       subtitle: "Connect your bank account effortlessly.",
       iconName: "wallet",
-      onPress: () => console.log('Pressed Block 2'),
+      onPress: handleButtonPress,
     },
     // Add more block data as needed
   ];
@@ -95,7 +101,7 @@ export default function TabOneScreen() {
 <ServiceList/>
 
 <View style={styles.fds} lightColor="#fbfcfd" darkColor="#000">
-  <Text style={styles.gtext} lightColor="#00000099" darkColor="#ccc">Get started</Text>
+  <Text style={styles.gtext} lightColor="#00000099" darkColor="#ccc" onPress={handleButtonPress}>Get started</Text>
   <Text style={styles.btext} lightColor="#E57F06" darkColor="#E57F06">0/4</Text>
 </View>
 
@@ -113,7 +119,7 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
 paddingTop:15,
-padding: 15,
+paddingHorizontal: 15,
 flex: 1,
 
     

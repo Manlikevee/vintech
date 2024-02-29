@@ -27,7 +27,7 @@ const Blocks = ({ data }) => {
          </View>
   
             <View>
-             <SimpleLineIcons name='arrow-right' size={13} color="#323232" style={styles.icon}/>
+             <SimpleLineIcons name='arrow-right' size={12} color="#323232" style={styles.icon}/>
             </View>
           </View>
         </TouchableOpacity>
