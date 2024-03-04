@@ -41,6 +41,7 @@ const renderItem = ({ item, index }) => (
     <View style={{     marginTop: 20, backgroundColor: 'transparent' }}>
    <FlatList
       data={data}
+      scrollEnabled={false}
       numColumns={5}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}

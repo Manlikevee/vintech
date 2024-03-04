@@ -9,6 +9,11 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { Text, View } from "@/components/Themed";
 import Avatar from "@/components/Reusables/ui/Avatar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof EvilIcons>["name"];
@@ -27,6 +32,12 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
+
+    <GestureHandlerRootView style={{ flex: 1 }}>
+    <BottomSheetModalProvider>
+<View style={{backgroundColor:'transparent', flex: 1, }}>
+
+
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
@@ -126,5 +137,8 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </View>
+    </BottomSheetModalProvider>
+  </GestureHandlerRootView>
   );
 }

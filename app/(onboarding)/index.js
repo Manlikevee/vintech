@@ -6,11 +6,12 @@ import Onboarding from 'react-native-onboarding-swiper';
 import { router } from 'expo-router';
 const {width, height} = Dimensions.get('window')
 
-export function mylogin() {
-  router.replace('/(auth)/login');
-}
 
 const index = () => {
+  const mylogin = () => {
+    router.replace('/(auth)');
+  }
+  
   return (
     <View style={{ flex: 1,  }}>
 <Onboarding
@@ -52,18 +53,18 @@ source={require('../../assets/lottieimg/five.json')} autoPlay loop />
 //       title: 'Dashboard Insights',
 //       subtitle: 'View detailed analytics and track your progress effortlessly.',
 //     },
-    {
-      backgroundColor: '#CBBCF6',
-      image: (
+//     {
+//       backgroundColor: '#CBBCF6',
+//       image: (
    
-        <LottieView style={styles.lottie}
+//         <LottieView style={styles.lottie}
 
-source={require('../../assets/lottieimg/exc.json')} autoPlay loop />
+// source={require('../../assets/lottieimg/exc.json')} autoPlay loop />
    
-      ),
-      title: 'Multi-Currency Support',
-      subtitle: 'Seamlessly transact in various currencies with ease and convenience.',
-    },
+//       ),
+//       title: 'Multi-Currency Support',
+//       subtitle: 'Seamlessly transact in various currencies with ease and convenience.',
+//     },
 
     {
       backgroundColor: '#EEE2DE',

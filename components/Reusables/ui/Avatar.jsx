@@ -4,11 +4,18 @@ import React from 'react'
 
 const Avatar = () => {
   return (
-    <>
+    <View style={{flexDirection:'row', gap: 10}} darkColor='transparent'>
+    
          <View style={styles.ava} lightColor="#fff" darkColor="#1d1e22">
      <Text style={styles.avatext} lightColor="#000" darkColor="#ffffff99">VO</Text>
    </View>
-    </>
+   <View darkColor='transparent'>
+<Text style={{    fontSize: 13,
+    }} lightColor="#000" darkColor="#ffffff99">Hello Vee</Text>
+<Text style={{    fontSize: 11, fontFamily: 'Satoshimid',
+    color: '#525452', fontWeight: '600'}}>Welcome Lets Make Payments</Text>
+</View>
+    </View>
 
   )
 }

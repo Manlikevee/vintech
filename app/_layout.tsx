@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
+import { Veecontext } from '@/components/Veecontext';
 import { useColorScheme } from '@/components/useColorScheme';
 
 export {
@@ -51,8 +51,9 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  const myinitial = "(auth)"
+  const myinitial = "(onboarding)"
   return (
+    <Veecontext>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack initialRouteName={myinitial}>
  
@@ -62,5 +63,6 @@ function RootLayoutNav() {
         <Stack.Screen name="(auth)"  options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
+    </Veecontext>
   );
 }

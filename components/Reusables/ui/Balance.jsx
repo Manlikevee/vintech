@@ -1,38 +1,57 @@
-import { StyleSheet } from 'react-native'
-import React from 'react'
+import { StyleSheet, ImageBackground } from 'react-native'
+import React, { useState, useContext } from 'react'
 import { Text, View } from '@/components/Themed';
+import { UserData } from '@/components/Veecontext';
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { Ionicons } from '@expo/vector-icons';
 
 const Balance = () => {
+  const { amt } = useContext(UserData);
+  const [visibleBalance, setvisibleBalance] = useState(false);
+  const setfuncvisible = () => {
+    setvisibleBalance(!visibleBalance)
+   
+  }  
     const colorScheme = useColorScheme();
   return (
+
     <View       style={[
         styles.mybalance,
         {
           borderColor: Colors[colorScheme ?? 'light'].borderColor,
         },
       ]}  lightColor="#fff" darkColor="#111111">
-        <View style={{backgroundColor:'transparent', flexDirection: 'row', gap: 7, alignItems:'flex-end'}}>
+        
+        
+        <View style={{backgroundColor:'transparent', flexDirection: 'row', gap: 6, alignItems:'flex-end'}}>
        
             <Text style={[styles.pcent,       {
-          backgroundColor: Colors[colorScheme ?? 'light'].borderColor,
-        },  ]} lightColor="#00000099" darkColor="#d4d3d3" >00.00%</Text>
+          backgroundColor: Colors[colorScheme ?? 'light'].success,
+        },  ]} lightColor="#1BA019" darkColor="#d4d3d3" >00.00%</Text>
           
          
         <Text style={styles.accenttext} lightColor="#00000099" darkColor="#ccc">compared to last month</Text>
         </View>
-  <View style={{flexDirection: 'row', justifyContent: 'space-between', gap: 2, backgroundColor:'transparent', alignItems:'flex-end', marginBottom: 7}}>
+  <View style={{flexDirection: 'row', justifyContent: 'space-between', gap: 2, backgroundColor:'transparent', alignItems:'flex-end', marginBottom: 5}}>
       <View style={{flexDirection: 'row', gap: 2, backgroundColor:'transparent', alignItems:'flex-end'}}>
-      <Text style={styles.bal} lightColor="#E57F06" darkColor="#ccc">$ 500,000,000.</Text>
-      <Text style={styles.balsmall} lightColor="#E57F0666" darkColor="#ccc">00</Text>
+      <Text style={styles.bal} lightColor="#E57F06" darkColor="#ccc">
+        
+      {!visibleBalance ? ('₦ *****') : amt }</Text>
+      <Text style={styles.balsmall} lightColor="#E57F0666" darkColor="#ccc">
+       
+        {!visibleBalance ? ('.**') : ('00') }
+        </Text>
       </View>
-<Ionicons name='eye-outline' size={25} color={Colors[colorScheme ?? "light"].icontext}/>
+<Ionicons onPress={setfuncvisible}
+ name={!visibleBalance ? 'eye-off-outline' : 'eye-outline'}
+
+size={22} color={Colors[colorScheme ?? "light"].icontext}/>
     
   </View>
 
     </View>
+
   )
 }
 
@@ -40,7 +59,7 @@ export default Balance
 
 const styles = StyleSheet.create({
     mybalance:{
-        marginTop: 30, 
+        marginTop: 20, 
         padding: 15,
         paddingVertical: 25,
         borderRadius: 7,
