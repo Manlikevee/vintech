@@ -19,7 +19,11 @@ export function mylogin() {
   
 
 const Page = () => {
-    console.log(Imageone)
+const mysignup=()=>{
+  router.push('/login');
+}
+
+  console.log(Imageone)
     const colorScheme = useColorScheme();
     const myimages = [Imagefive, Imageone, Imagetwo , Imagefour,  ];
   return (
@@ -66,7 +70,7 @@ source={require('../../assets/lottieimg/card.json')} autoPlay loop /> */}
       <Text style={styles.subtext}>Banking redefined – seamless transactions and personalized finance management, all in one app</Text>
 
       <View style={styles.buttongroup}>
-<TouchableOpacity style={styles.bluebtn} >
+<TouchableOpacity style={styles.bluebtn} onPress={mysignup} >
 <Text style={styles.bluebtntext}>Create An Account</Text>
 </TouchableOpacity>
 

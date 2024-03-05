@@ -5,6 +5,7 @@ export default {
   light: {
     text: '#171717',
     background: '#fff',
+    bg: '#fff',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
@@ -13,11 +14,14 @@ export default {
     login: '#fff',
     micon: '#fff',
     success: '#1BA0190D',
-    cardborderColor: '#f2f2f2'
+    cardborderColor: '#f2f2f2',
+    tabtop: '#fff',
+    curact: '#F5F7FA'
   },
   dark: {
     text: '#aeaeae',
     background: '#000',
+    bg: '#111111',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
@@ -26,6 +30,8 @@ export default {
     login: '#0c0c0c',
     micon: 'transparent',
     success: '#1BA0190D',
-    cardborderColor: '#2b2b2b'
+    cardborderColor: '#2b2b2b',
+    tabtop: '#2b2b2b',
+    curact:  '#2b2b2b',
   },
 };

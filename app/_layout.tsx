@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { Veecontext } from '@/components/Veecontext';
 import { useColorScheme } from '@/components/useColorScheme';
-
+import Toast from 'react-native-toast-message';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -51,18 +51,21 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  const myinitial = "(onboarding)"
+
   return (
     <Veecontext>
+
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName={myinitial}>
- 
+   
+      <Stack initialRouteName="(auth)/login">
+      <Stack.Screen name="(onboarding)"  options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="(onboarding)"  options={{ headerShown: false }} />
         <Stack.Screen name="(auth)"  options={{ headerShown: false }} />
+      
       </Stack>
     </ThemeProvider>
+    <Toast />
     </Veecontext>
   );
 }

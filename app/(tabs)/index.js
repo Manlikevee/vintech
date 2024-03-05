@@ -9,130 +9,59 @@ import ServiceList from '@/components/Servicelist'
 import Blocks from '@/components/Blocks'
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import Transactions from '@/components/Transactions'
-import { useState } from 'react';
-import { Appearance } from 'react-native';
+import { useState, useContext } from 'react';
+import { UserData } from '@/components/Veecontext';
+import Currency from '@/components/Bottomsheets/Currency';
+
 
 
 export default function TabOneScreen() {
 
 
-  const [appearanceMode, setAppearanceMode] = useState('automatic');
+  const {isOpen} = useContext(UserData)
+  const {handleButtonPress} = useContext(UserData)
+  const {blockData} = useContext(UserData)
+  const {data2} = useContext(UserData)
+  const {data1} = useContext(UserData)
+  const {toggleAppearanceMode} = useContext(UserData)
 
+  const [currentPage, setCurrentPage] = useState(0);
 
-
-  const handleButtonPress = () => {
-    // Vibrate for 500ms
-    Vibration.vibrate(20);
+  const handleScroll = (event) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const page = Math.round(offsetX / screenWidth);
+    setCurrentPage(page);
   };
 
 
 
 
-  const blockData = [
-    {
-      title: "Complete your KYC",
-      subtitle: "For safe and seamless money transfers.",
-      iconName: "doc",
-      onPress: () => console.log('Pressed Block 1'),
-    },
-    {
-      title: "Deposit into account",
-      subtitle: "Make a deposit with confidence.",
-      iconName: "briefcase",
-      onPress:  handleButtonPress,
-    },
-    {
-      title: "Set-up virtual card",
-      subtitle: "Establish your virtual card in a few steps",
-      iconName: "credit-card",
-      onPress:  handleButtonPress,
-    },
-    {
-      title: "Link bank account",
-      subtitle: "Connect your bank account effortlessly.",
-      iconName: "wallet",
-      onPress: handleButtonPress,
-    },
-    // Add more block data as needed
-  ];
 
-  const data1 = [
-    { key: '1', text: 'Item 1', name: 'Airtime', icon: 'shake' },
-    { key: '2', text: 'Item 2', name: 'Bills', icon: 'bank' },
-    { key: '3', text: 'Item 3', name: 'Betting', icon: 'dribbble' },
-    { key: '4', text: 'Item 1', name: 'Reffer', icon: 'switcher' },
-    { key: '5', text: 'Item 2', name: 'Education', icon: 'book' },
-    { key: '6', text: 'Item 3', name: 'Transportation', icon: 'car' },
-    { key: '7', text: 'Item 2', name: 'Power', icon: 'bulb1' },
-    { key: '8', text: 'Item 3', name: 'Investment', icon: 'linechart' },
-  ];
-
-  const data2 = [
-    { key: '1', text: 'Item 1', name: 'Booking', icon: 'airplane' },
-    { key: '2', text: 'Item 2', name: 'Budgeting', icon: 'calculator-variant-outline' },
-    { key: '3', text: 'Item 3', name: 'Scheduler', icon: 'send-clock-outline' },
-    { key: '4', text: 'Item 1', name: 'Charity', icon: 'charity' },
-    { key: '5', text: 'Item 2', name: 'Debit Card', icon: 'credit-card-outline' },
-    { key: '6', text: 'Item 3', name: 'Scan To Pay', icon: 'line-scan' },
-    { key: '7', text: 'Item 2', name: 'Nearby Pos', icon: 'map-check-outline' },
-    { key: '8', text: 'Item 3', name: 'Safe Lock', icon: 'safe' },
-  ];
 
   const screenWidth = Dimensions.get('window').width;
   const colorScheme = useColorScheme();
 
 
-  const toggleAppearanceMode = () => {
-    if (appearanceMode === 'light') {
-      Appearance.setColorScheme('dark');
-      setAppearanceMode('dark');
-    } else if (appearanceMode === 'dark') {
-      Appearance.setColorScheme('light');
-      setAppearanceMode('light');
-    } else {
-      // If appearanceMode is null or undefined (i.e., automatic), you can set it to a default value
-      Appearance.setColorScheme('dark'); // Or any other default value
-      setAppearanceMode('dark');
-    }
-  };
-  const imageSource = { uri: 'https://uxwing.com/wp-content/themes/uxwing/download/flags-landmarks/united-states-flag-icon.png' };
+
+  
   return (
-    <View style={styles.container} lightColor="#fbfcfd" darkColor="#000">
+    <View style={[StyleSheet.absoluteFill,{flex:1,
+      backgroundColor: isOpen ? '#ddd' : 'transparent',
+       opacity: isOpen ?  0.1 : 1,
+       pointerEvents: isOpen ? 'none' : 'auto',
+       }]}  darkColor="#000">
+    <View style={styles.container} lightColor="#fbfcfd" darkColor="#000" >
       <ScrollView style={styles.scrollgap}
       showsVerticalScrollIndicator={false} // Hide vertical scrollbar
       showsHorizontalScrollIndicator={false} // Hide horizontal scrollbar
       >
 
         <View style={styles.fd} lightColor="#fbfcfd" darkColor="#000">
-<TouchableOpacity>
-        <View       style={[
-        styles.currencyinput,
-        {
-          borderColor: Colors[colorScheme ?? 'light'].borderColor,
-        },
-      ]}  lightColor="#fff" darkColor="#111111">
-        <View lightColor="#fff" darkColor="#111111">
-        {/* <Image
-          style={{
-            width: 20, // Or use '100%' for responsive width
-            height: 20,
-            resizeMode: 'contain', // Or other resize modes
-   
-          }}
-        
-        source={imageSource} /> */}
+<View style={{ width: '27%'}} lightColor="transparent" darkColor="transparent">
+<Currency/>
+</View>
 
-<Image source={require('../../assets/images/ngn.png')} style={{ width: 18, height: 18 , borderRadius: 50}} />
-          </View> 
-          <View lightColor="#fff" darkColor="#111111">
-          <Text style={styles.mytxt} lightColor="#1C274C"  >NGN</Text>
-        
-          </View>
-          <View lightColor="#fff" darkColor="#111111">
-            <EvilIcons name='chevron-down' size={22}   color={Colors[colorScheme ?? "light"].text}/>
-          </View>
-        </View>
-        </TouchableOpacity>
+
        
        <TouchableOpacity
        onPressIn={toggleAppearanceMode}
@@ -157,7 +86,13 @@ export default function TabOneScreen() {
   <Text style={styles.btext} lightColor="#E57F06" darkColor="#E57F06">0/4</Text>
 </View>
 
-<View style={styles.fdswidth} lightColor="transparent" darkColor="#000">
+<View style={{    backgroundColor: 'transparent',
+    padding: 1,
+    marginVertical: 12,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+
+  }} lightColor="transparent" darkColor="#000">
 
 <Blocks data={blockData} />
 
@@ -193,6 +128,8 @@ export default function TabOneScreen() {
         horizontal={true}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={200}
       >
 
         <View style={{ width: screenWidth * 0.848, backgroundColor:'transparent' }}>
@@ -236,6 +173,21 @@ export default function TabOneScreen() {
         </View>
       </ScrollView>
 
+      <View style={styles.pagination}>
+          {[...Array(2)].map((_, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                setCurrentPage(index);
+                // You might need to scroll to the correct position programmatically
+              }}
+              style={[
+                styles.paginationIndicator,
+                currentPage === index && styles.activePaginationIndicator,
+              ]}
+            />
+          ))}
+        </View>
 
 
 </View>
@@ -243,6 +195,7 @@ export default function TabOneScreen() {
 
 
       </ScrollView>
+    </View>
     </View>
   );
 }
@@ -254,6 +207,22 @@ paddingHorizontal: 15,
 flex: 1,
 
     
+  },
+  pagination: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 10,
+    backgroundColor: 'transparent'
+  },
+  paginationIndicator: {
+    width: 13,
+    height: 3,
+    borderRadius: 4,
+    backgroundColor: '#ccc',
+    marginHorizontal: 4,
+  },
+  activePaginationIndicator: {
+    backgroundColor: '#F0B673',
   },
   icon:{
     backgroundColor: 'transparent',
