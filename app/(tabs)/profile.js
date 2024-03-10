@@ -24,7 +24,7 @@ const Profile = () => {
 <Text style={styles.mytxt} lightColor='#888'>Account</Text>
 <View style={[styles.fdscol,  {
               borderColor: Colors[colorScheme ?? 'light'].cardborderColor,
-            },]} lightColor="#fff" darkColor="#000">
+            },]} lightColor="#fff" darkColor="#111111">
   <View style={styles.pdata}>
     {accountCategory.map(item => (
       <View style={styles.item} key={item.name}>
@@ -40,7 +40,7 @@ const Profile = () => {
 <Text style={styles.mytxt} lightColor='#888'>Finances</Text>
 <View style={[styles.fdscol,  {
               borderColor: Colors[colorScheme ?? 'light'].cardborderColor,
-            },]} lightColor="#fff" darkColor="#000">
+            },]} lightColor="#fff" darkColor="#111111">
   <View style={styles.pdata}>
     {financeCategory.map(item => (
       <View style={styles.item} key={item.name}>
@@ -56,7 +56,7 @@ const Profile = () => {
 <Text style={styles.mytxt} lightColor='#888'>Security</Text>
 <View style={[styles.fdscol,  {
               borderColor: Colors[colorScheme ?? 'light'].cardborderColor,
-            },]} lightColor="#fff" darkColor="#000">
+            },]} lightColor="#fff" darkColor="#111111">
   <View style={styles.pdata}>
     {securityCategory.map(item => (
       <View style={styles.item} key={item.name}>
@@ -72,7 +72,7 @@ const Profile = () => {
 <Text style={styles.mytxt} lightColor='#888'>Others</Text>
 <View style={[styles.fdscol,  {
               borderColor: Colors[colorScheme ?? 'light'].cardborderColor,
-            },]} lightColor="#fff" darkColor="#000">
+            },]} lightColor="#fff" darkColor="#111111">
   <View style={styles.pdata}>
     {othersCategory.map(item => (
       <View style={styles.item} key={item.name}>
@@ -122,13 +122,15 @@ paddingHorizontal: 15,
   },
   pdata:{
     paddingVertical: 10,
+    backgroundColor:'transparent',
 gap:29,
     flexDirection: 'column'
 
   },
   item:{
     gap: 20,
-    flexDirection:'row'
+    flexDirection:'row',
+    backgroundColor:'transparent'
   },
   itemText:{
     fontFamily: 'Satoshimid',

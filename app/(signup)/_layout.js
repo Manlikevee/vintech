@@ -6,7 +6,7 @@ import { Redirect } from "expo-router";
 import { UserData } from "@/components/Veecontext";
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 
-export default function Authlayout() {
+export default function Authlayouts() {
   const {isAuthenticated} = useContext(UserData)
   useEffect(() => {
     if (isAuthenticated) {
@@ -19,8 +19,10 @@ export default function Authlayout() {
     <Stack>
    
         <Stack.Screen name="index"  options={{ headerShown: false }} />
-      
-       <Stack.Screen name="login" options={{ headerShown: false }} />
+       <Stack.Screen name="basicinfo" options={{ headerShown: false }} />
+       <Stack.Screen name="country" options={{ headerShown: false }} />
+       <Stack.Screen name="password" options={{ headerShown: false }} />
+       <Stack.Screen name="signup" options={{ headerShown: false }} />
     </Stack>
 
   );

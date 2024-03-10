@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
         padding: 10,
   backgroundColor: 'transparent',
         borderRadius: 7,
+        flexDirection:'column',
+        gap: 9,
     },
     container: {
         flexDirection: 'row',

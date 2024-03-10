@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Link, Stack, useNavigation } from 'expo-router';
+import { Link, Redirect, Stack, useNavigation } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { router } from 'expo-router';
@@ -9,11 +9,13 @@ const {width, height} = Dimensions.get('window')
 
 const index = () => {
   const mylogin = () => {
-    router.replace('/(auth)');
+    router.replace('/(auth)/');
   }
   
   return (
+
     <View style={{ flex: 1,  }}>
+          <Redirect href="/(signup)/" />
 <Onboarding
 bottomBarHighlight={false}
 containerStyles={{paddingHorizontal:16,}}

@@ -50,7 +50,7 @@ const Page = () => {
       type: 'error',
       text1: 'Incorrect password. 4 attempts remaining.',
     });
-    Vibration.vibrate(90);
+    Vibration.vibrate(120);
         }
       }
     }
@@ -58,16 +58,23 @@ const Page = () => {
 
 const finalsay = () => {
 
-setIsAuthenticated(true);
+  setIsAuthenticated(true);
   router.replace('/(tabs)/profile');
 }
+
   const handlePress = (item) => {
+   
     if (item === "fingerprint") {
+  
       console.log("Fingerprint button pressed");
       onAuthenticate();
-    } else if (item === "delete-left") {
+    }
+     else if (item === "delete-left") {
+      Vibration.vibrate(70);
       handleDelete();
-    } else {
+    } 
+    else {
+      Vibration.vibrate(40);
       const newOtp = [...otp];
       const emptyIndex = newOtp.findIndex((code) => code === "");
       if (emptyIndex !== -1) {
@@ -88,10 +95,20 @@ setIsAuthenticated(true);
         type: 'success',
         text1: 'Login Successful',
       });
-      finalsay()
+   
       console.log(result);
+      if(result?.success == true){
+        finalsay()
+      }
+      else{
+
+        Toast.show({
+          type: 'error',
+          text1: 'Authentication Failed.',
+        });
+  
+      }
     } catch (error) {
-      setIsAuthenticated(false);
       console.error('Authentication error:', error);
       Toast.show({
         type: 'error',
@@ -103,6 +120,7 @@ setIsAuthenticated(true);
 
   const handleDelete = () => {
     const newOtp = [...otp];
+    
     const lastFilledIndex = newOtp.reduce(
       (acc, cur, index) => (cur !== "" ? index : acc),
       -1
@@ -114,9 +132,11 @@ setIsAuthenticated(true);
   };
 
   const handleChange = (value, index) => {
+
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
+
   };
 
   const renderItem = ({ item }) => (
@@ -150,14 +170,14 @@ setIsAuthenticated(true);
     <View
       style={{
         flex: 1,
-        paddingTop: 90,
-        gap: 16,
-        padding: 20,
+        paddingTop: 80,
+        gap: 6,
+        padding: 15,
         backgroundColor: "white",
       }}
     >
-
-      <View style={{ flexDirection: "row", marginTop:10 }}>
+<View style={{height: '25%',backgroundColor:'transparent', gap: 17}}>
+<View style={{ flexDirection: "row", marginTop:10 }}>
         <View
           style={{
             backgroundColor:'#F0F3F5',
@@ -180,7 +200,8 @@ setIsAuthenticated(true);
         <Text style={{ fontFamily: "Satoshi" }}>Enter Your 4-Digit pin { wrong ? ('wrong') : ('') }  </Text>
       </View>
 
-      <View>
+
+      <View >
         <FlatList
           data={otp}
           scrollEnabled={false}
@@ -190,12 +211,16 @@ setIsAuthenticated(true);
           horizontal
         />
       </View>
+</View>
+
+<View style={{height:'70%', backgroundColor:'transparent', gap: 20}}>
+   
 
       <View
         style={{
           backgroundColor: "transparent",
-          padding: 4,
-          marginTop: 40,
+        
+          marginTop: 50,
           alignItems: "center",
         }}
       >
@@ -208,7 +233,8 @@ setIsAuthenticated(true);
       </View>
 
       <View style={{alignItems:'center'}}>
-        <Text>Not Your Account? <Link href='/(auth)/signup'> Logout</Link>  </Text>
+        <Text>Not Your Account? <Link href='/(auth)'> Logout</Link>  </Text>
+      </View>
       </View>
     </View>
   );
@@ -226,6 +252,7 @@ const styles = StyleSheet.create({
   otpInput: {
     width: 50,
     height: 50,
+ 
     borderWidth: 1,
     borderColor: "black",
     textAlign: "center",
@@ -236,12 +263,13 @@ const styles = StyleSheet.create({
     fontFamily:'Satoshimid'
   },
   button: {
-    width: 110,
-    height: 100,
+    width: 100,
+    padding: 32,
     justifyContent: "center",
     alignItems: "center",
     margin: 2,
     borderWidth: 1,
+    backgroundColor: 'white',
     borderColor: "transparent",
   },
   buttonInner: {

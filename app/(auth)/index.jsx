@@ -9,18 +9,20 @@ import Imagetwo from '../../assets/loginimg/two.jpg'
 import Imagethree from '../../assets/loginimg/three.jpg'
 import Imagefour from '../../assets/loginimg/four.jpg'
 import Imagefive from '../../assets/loginimg/five.jpg'
+import adap from '../../assets/images/adap.png'
 const {width, height} = Dimensions.get('window')
 import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 export function mylogin() {
     Vibration.vibrate(20);
-    router.push('/(tabs)');
+    router.push('/login');
   }
   
 
 const Page = () => {
+  
 const mysignup=()=>{
-  router.push('/login');
+  router.push('/(signup)');
 }
 
   console.log(Imageone)
@@ -64,6 +66,10 @@ source={require('../../assets/lottieimg/card.json')} autoPlay loop /> */}
         
 
           <View style={styles.bottomcontent}>
+          <Image
+  source={adap}
+  style={{ width: 90, height: 80 , objectFit:'cover', alignSelf:'center'}}
+/>
           <Text style={[styles.txtcenter, {
           color: Colors[colorScheme ?? 'light'].text,
         },]}>Welcome To <Text style={styles.boldblue}>Vintech</Text>  </Text>
@@ -97,12 +103,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width,
-        height: '60%',
+        height: '55%',
     },
     rest:{
         backgroundColor: 'transparent',
         width: width,
-        height:  '40%',
+        height:  '45%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
                       },
               txtcenter:{
                 fontSize: 17,
-                marginTop: 20,
+                marginTop: 3,
                 marginBottom: 2,
         textAlign: 'center',
  fontWeight: '900',

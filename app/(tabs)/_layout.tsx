@@ -35,12 +35,12 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const {isAuthenticated} = useContext(UserData)
-  useEffect(() => {
-    if (!isAuthenticated) {
-      // Redirect to login page
-      router.replace('/(auth)/login');// Assuming 'Login' is the name of your login screen
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     // Redirect to login page
+  //     router.replace('/(auth)/login');// Assuming 'Login' is the name of your login screen
+  //   }
+  // }, [isAuthenticated]);
 
   // If isAuthenticated is false, return a Redirect component to the login page
 
