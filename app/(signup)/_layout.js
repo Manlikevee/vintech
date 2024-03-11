@@ -23,6 +23,7 @@ export default function Authlayouts() {
        <Stack.Screen name="country" options={{ headerShown: false }} />
        <Stack.Screen name="password" options={{ headerShown: false }} />
        <Stack.Screen name="signup" options={{ headerShown: false }} />
+       <Stack.Screen name="signupmodal" options={{ headerShown: false,  presentation : 'fullScreenModal' }}  />
     </Stack>
 
   );

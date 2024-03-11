@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useEffect, useState, useContext, useMemo } from "react";
 import { Vibration } from "react-native";
 import { Appearance } from "react-native";
 import ngn from '../assets/images/ngn.png'
@@ -9,6 +9,39 @@ import eur from '../assets/images/cad.png'
 const UserData = createContext();
 
 const Veecontext = ({ children }) => {
+
+
+
+  const [selectedCountryId, setSelectedCountryId] = useState(null);
+  const countries = [
+
+    { "id": "NG", "name": "Nigeria" },
+    { "id": "GH", "name": "Ghana" },
+    { "id": "ZA", "name": "South Africa" },
+    { "id": "CM", "name": "Cameroon" },
+    { "id": "US", "name": "United States" },
+    { "id": "GB", "name": "United Kingdom" },
+    { "id": "CA", "name": "Canada" },
+    { "id": "AU", "name": "Australia" },
+    { "id": "DE", "name": "Germany" },
+    { "id": "FR", "name": "France" },
+    { "id": "BR", "name": "Brazil" },
+    { "id": "JP", "name": "Japan" },
+    { "id": "IN", "name": "India" },
+    { "id": "RU", "name": "Russia" },
+    { "id": "CN", "name": "China" },
+    { "id": "IT", "name": "Italy" },
+    { "id": "ES", "name": "Spain" },
+    { "id": "MX", "name": "Mexico" },
+    { "id": "AR", "name": "Argentina" },
+
+  // other countries
+];
+
+const countryname = useMemo(() => {
+  const filteredCountry = countries.find(country => country.id === selectedCountryId);
+  return filteredCountry ? filteredCountry.name : '';
+}, [selectedCountryId, countries]);
 
 
   const accountCategory = [
@@ -285,7 +318,11 @@ const Veecontext = ({ children }) => {
         securityCategory ,
         othersCategory ,
         isAuthenticated,
-        setIsAuthenticated
+        setIsAuthenticated,
+        setSelectedCountryId,
+        countries,
+        selectedCountryId,
+        countryname
       }}
     >
       {children}

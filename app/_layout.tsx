@@ -26,6 +26,9 @@ export default function RootLayout() {
     Soramid: require('../assets/fonts/Sora-Regular.ttf'),
     Soraxxl: require('../assets/fonts/Sora-ExtraBold.ttf'),
     flamabold: require('../assets/fonts/Flama-Bold.otf'),
+    PoppinsLight: require('../assets/fonts/Poppins-Light.ttf'),
+    Poppinsmid: require('../assets/fonts/Poppins-Medium.ttf'),
+
     ...FontAwesome.font,
   });
 
