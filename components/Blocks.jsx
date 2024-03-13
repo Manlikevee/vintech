@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     mybalance:{
         borderWidth: 1,
         width: '100%',
-        padding: 15,
+        padding: 16,
   marginBottom: 15,
   backgroundColor: 'transparent',
 
@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
       },
       title: {
-        fontFamily: 'Satoshi',
-        fontSize: 14,
-        fontWeight: '700',
+        fontFamily: 'Satoshimid',
+        fontSize: 13,
+        fontWeight: '800',
         marginBottom: 5,
       },
       subtitle: {

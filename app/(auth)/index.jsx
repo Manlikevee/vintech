@@ -15,7 +15,7 @@ import LottieView from 'lottie-react-native';
 import { router } from 'expo-router';
 export function mylogin() {
     Vibration.vibrate(20);
-    router.push('/login');
+    router.push('/loginpage');
   }
   
 

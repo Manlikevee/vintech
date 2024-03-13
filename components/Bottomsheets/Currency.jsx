@@ -57,7 +57,7 @@ const Currency = () => {
           <BottomSheetBackdrop
             {...props}
             disappearsOnIndex={1}
-            appearsOnIndex={2}
+            appearsOnIndex={1}
             backgroundColor="rgba(0, 0, 0, 0.5)" 
           />
         ),

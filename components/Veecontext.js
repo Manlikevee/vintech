@@ -5,11 +5,29 @@ import ngn from '../assets/images/ngn.png'
 import gbp from '../assets/images/gbp.png'
 import usd from '../assets/images/usd.png'
 import eur from '../assets/images/cad.png'
+import axios from 'axios';
 
 const UserData = createContext();
 
 const Veecontext = ({ children }) => {
 
+
+ 
+
+// Define a standalone function to make a GET request
+const fetchData = async (url) => {
+  try {
+    // Make the GET request using Axios
+    const response = await axios.get(url);
+
+    // If the request is successful, return the data
+    return response.data;
+  } catch (error) {
+    // If there's an error, handle it here
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to be caught by the caller if needed
+  }
+};
 
 
   const [selectedCountryId, setSelectedCountryId] = useState(null);
@@ -322,7 +340,8 @@ const countryname = useMemo(() => {
         setSelectedCountryId,
         countries,
         selectedCountryId,
-        countryname
+        countryname,
+        fetchData
       }}
     >
       {children}

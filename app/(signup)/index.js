@@ -35,13 +35,18 @@ const Page = () => {
 
   // Memoize the derived state to avoid unnecessary recalculations
 
-
+  const handleGoBack = () => {
+    router.back();
+  };
   // Function to navigate to signup modal
   const navigateToSignup = () => {
     router.push('/signupmodal');
   }
 
 
+const nextstep = () =>{
+  router.push('/basicinfo');
+}
 
   return (
 
@@ -64,25 +69,25 @@ const Page = () => {
 <Octicons name="arrow-left" size={20} color='#999' />
   <View style={{flexDirection:'row', gap: 6, alignItems:'center'}}> 
     
-  <View style={{padding:4, backgroundColor: 'red', height: 12, width:12, borderRadius: 50}} />  
-  <View style={{padding:1, backgroundColor: 'red', height: 3, width:26, borderRadius: 50}} />  
-  <View style={{padding:4, backgroundColor: 'red', height: 12, width:12, borderRadius: 50}} />  
-  <View style={{padding:1, backgroundColor: 'red', height: 3, width:26, borderRadius: 50}} />  
-  <View style={{padding:4, backgroundColor: 'red', height: 12, width:12, borderRadius: 50}} />  
-  <View style={{padding:1, backgroundColor: 'red', height: 3, width:26, borderRadius: 50}} />  
-  <View style={{padding:4, backgroundColor: 'red', height: 12, width:12, borderRadius: 50}} />  
+  <View style={{padding:4, backgroundColor:'#E57F06', height: 12, width:12, borderRadius: 50}} />  
+  <View style={{padding:1, backgroundColor: '#93BEAB', height: 3, width:26, borderRadius: 50}} />  
+  <View style={{padding:4, backgroundColor: '#93BEAB', height: 12, width:12, borderRadius: 50}} />  
+  <View style={{padding:1, backgroundColor: '#93BEAB', height: 3, width:26, borderRadius: 50}} />  
+  <View style={{padding:4, backgroundColor: '#93BEAB', height: 12, width:12, borderRadius: 50}} />  
+  <View style={{padding:1, backgroundColor: '#93BEAB', height: 3, width:26, borderRadius: 50}} />  
+  <View style={{padding:4, backgroundColor: '#93BEAB', height: 12, width:12, borderRadius: 50}} />  
     
   </View>
 <View><Text>1/4</Text></View>
 </View>
 
-<View style={{paddingVertical: 4, marginTop: 4}}>
+<View style={{paddingVertical: 4, marginTop: 15}}>
 <Text style={styles.bigtxt}>What Country Do You Live In ?</Text>
 <Text style={styles.subtext}>
 Take the first step towards personalized financial empowerment by selecting your current location:
   </Text>
 </View>
-<Text style={{paddingVertical:8, fontFamily: 'Satoshi', fontSize: 17}}>Country</Text>
+<Text style={{paddingVertical:8,  fontSize: 14, fontWeight:'400', marginTop:10}}>Country</Text>
     <TextInput
           autoCapitalize="none"
           style={styles.input}
@@ -96,7 +101,9 @@ Take the first step towards personalized financial empowerment by selecting your
 
 
 <View>
-  <TouchableOpacity style={{padding: 20, backgroundColor:'orange'}}><Text>Submit</Text></TouchableOpacity>
+  <TouchableOpacity style={{padding: 20, backgroundColor:'#E57F06', borderRadius: 7}} onPress={nextstep}>
+    <Text style={{color: 'white', textAlign:'center'}}>Proceed</Text>
+    </TouchableOpacity>
 </View>
 
         </SafeAreaView>
@@ -115,11 +122,13 @@ color: 'black',
     borderColor: '#CFCFCF',
     borderWidth: 1,
     borderRadius: 4,
-    padding: 9,
-    backgroundColor: 'white'
+    padding: 7,
+    fontSize:13,
+    backgroundColor: 'transparent',
+    fontFamily:'Satoshi'
   },
 bigtxt:{
-fontSize: 23,
+fontSize: 22,
 fontFamily: 'Soraxxl',
 marginBottom: 5
 },

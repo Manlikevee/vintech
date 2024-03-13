@@ -15,7 +15,7 @@ const index = () => {
   return (
 
     <View style={{ flex: 1,  }}>
-          <Redirect href="/(signup)/" />
+        <Redirect href="/transaction/currencyswap" />
 <Onboarding
 bottomBarHighlight={false}
 containerStyles={{paddingHorizontal:16,}}
