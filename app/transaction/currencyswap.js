@@ -1,29 +1,44 @@
-import { ScrollView, StyleSheet, Image, Pressable, TouchableOpacity, Vibration, FlatList, Dimensions, SafeAreaView, Button } from 'react-native';
+import { ScrollView, StyleSheet, Image, Pressable, TouchableOpacity, Vibration, RefreshControl, FlatList, Dimensions, SafeAreaView, Button } from 'react-native';
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { Text, View } from '@/components/Themed';
 import { AntDesign, EvilIcons, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { useState, useContext, useRef, useMemo, useEffect } from 'react';
+import { useState, useContext, useRef, useMemo, useEffect, useCallback } from 'react';
 import { UserData } from '@/components/Veecontext';
+import accounting from 'accounting';
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import axios from 'axios';
 import Converterblock from '../../components/Converterblock';
+import { router } from 'expo-router';
 
 
 
 
 export default function Page() {
+  const [refreshing, setRefreshing] = useState(false);
   const colorScheme = useColorScheme();
   const {UserAccounts} = useContext(UserData)
-  const [activeConvertCurrency, setActiveConvertCurrency] = useState(null);
-    const refRBSheet = useRef();
-    const {activeCurrency} = useContext(UserData)
-    const b = activeCurrency?.currency
-    const url = `https://api.exchangerate-api.com/v4/latest/${b}`
+  const {otherCurrencies} = useContext(UserData)
+  const [figure, setFigure] =  useState('');
+  const [activeConvertCurrency, setActiveConvertCurrency] = useState(otherCurrencies[0]);
+  const refRBSheet = useRef();
+  const [rateCard, setRatecard] =  useState(null);
+  const {activeCurrency} = useContext(UserData);
+  const [convertedvalue, setconvertedvalue] =  useState(0);
+  const b = activeCurrency?.currency
+  let url =  `https://api.exchangerate-api.com/v4/latest/${b}`
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
-
+    const mylogin = () => {
+      router.replace('/(auth)/');
+    }
 
     useEffect(() => {
       // Filter UserAccounts to find a currency that is not the same as activeCurrency
@@ -31,7 +46,8 @@ export default function Page() {
   
       // Set activeConvertCurrency to the found currency
       setActiveConvertCurrency(convertCurrency);
-  console.log()
+      fetchDataOnClick(url)
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -40,12 +56,15 @@ export default function Page() {
 
 
      fetchDataOnClick = async (url) => {
+
         try {
           // Make the GET request using Axios
           const response = await axios.get(url);
       
           // If the request is successful, handle the data
-          console.log(response.data);
+       
+          setRatecard(response.data)
+        
           // You can update state or do any other action with the fetched data here
         } catch (error) {
           // If there's an error, handle it here
@@ -54,10 +73,30 @@ export default function Page() {
         }
       };
 
+      const validateCurrency = (text) => {
+        console.log(text)
+        const currentrate = rateCard?.rates?.[activeConvertCurrency?.currency] 
+        const convertedval = parseInt(currentrate) * parseInt(text) 
+   
+        setconvertedvalue(convertedval)
+    
+   
+          
+       
+      };
+
     return (
         <View style={styles.container} lightColor="#fbfcfd" darkColor="#000" >
  <SafeAreaView style={{flex:1, backgroundColor:'transparent'}}>
         <ScrollView 
+                refreshControl={
+                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh}
+                  colors={['#E57F06']} // Use your primary color for the refresh indicator
+                  tintColor={'#E57F06'} // iOS fallback color
+                  progressBackgroundColor="#ffffff" // Background color on Android
+                  
+                  />
+                }
   showsVerticalScrollIndicator={false} // Hide vertical scrollbar
   showsHorizontalScrollIndicator={false} // Hide horizontal scrollbar
   >
@@ -143,15 +182,18 @@ export default function Page() {
 </View> */}
 <View style={{gap:6}} lightColor='transparent'>
 <Text>From</Text>
-<Converterblock/>
+<Converterblock  figure={figure} setfigure={setFigure} validateCurrency={validateCurrency} convertedvalue={convertedvalue}/>
 </View>
 
 <View style={{gap:6}} lightColor='transparent'> 
 <Text>To</Text>
-<Converterblock currencyid={activeConvertCurrency?.id} amount={20} readonly={true} />
+<Converterblock currencyid={activeConvertCurrency?.id} convertedvalue={convertedvalue} amount={20} readonly={true} figure={figure} setfigure={setFigure} />
+<Text style={{fontFamily:'Satoshi', fontSize: 13, lineHeight:20}} lightColor='#00000099'> {activeCurrency?.symbol}&nbsp;1 is equivalent to &nbsp;{accounting.formatMoney(rateCard?.rates?.[activeConvertCurrency?.currency],  activeConvertCurrency?.symbol)}
+
+ </Text>
 </View>
 
-<Text> $1 is equivalent to ₦1,823.94995117 </Text>
+
 
 
 <View style={{gap:6}} lightColor='transparent'>
@@ -166,18 +208,18 @@ export default function Page() {
 <View style={{gap:15}}>
       <View style={styles.summarytab}>
           <Text Text style={styles.lbl} lightColor='#1C274C99'>Expected swap</Text>
-          <Text style={styles.value} lightColor='#1C274C'>$1000.00</Text>
+          <Text style={styles.value} lightColor='#1C274C'>{accounting.formatMoney(figure, activeCurrency?.symbol)}</Text>
         </View>
 
         <View style={styles.summarytab}>
         <Text Text style={styles.lbl} lightColor='#1C274C99'>Transaction fee</Text>
-        <Text style={styles.value} lightColor='#1C274C'>$6.00</Text>
+        <Text style={styles.value} lightColor='#1C274C'>{activeCurrency?.symbol}0.00</Text>
          
         </View>
 
         <View style={styles.summarytab}>
-        <Text Text style={styles.lbl} lightColor='#1C274C99'>Expected swap</Text>
-        <Text style={styles.value} lightColor='#1C274C'>₦1,813,006.25</Text>
+        <Text Text style={styles.lbl} lightColor='#1C274C99'>Expected total</Text>
+        <Text style={styles.value} lightColor='#1C274C'>{accounting.formatMoney(convertedvalue, activeConvertCurrency?.symbol)}</Text>
    
         </View>
 </View>
@@ -224,7 +266,7 @@ export default function Page() {
 
       </RBSheet>
 </ScrollView>
-<TouchableOpacity style={{padding: 15, backgroundColor:'#E57F06', borderRadius: 7}} >
+<TouchableOpacity style={{padding: 15, backgroundColor:'#E57F06', borderRadius: 7}}  onPress={mylogin}>
     <Text style={{color: 'white', textAlign:'center'}}>Proceed</Text>
     </TouchableOpacity>
 </SafeAreaView>
@@ -261,7 +303,7 @@ lineHeight:20
   },
   summarytab:{
 padding: 4,
-paddingVertical:6,
+paddingVertical:5,
 flexDirection:'row',
 justifyContent:'space-between',
 width:'100%',
@@ -279,7 +321,7 @@ alignItems:'center'
       flex: 1,
     },
     currencyinput:{
-      padding: 8,
+      padding: 11,
       gap:9,
       borderRadius: 9,
       borderWidth: 1,

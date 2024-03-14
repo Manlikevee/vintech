@@ -6,7 +6,7 @@ import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { Text, View } from '@/components/Themed';
 import accounting from 'accounting';
-const Converterblock = ({ readonly, amount, currencyid }) => {
+const Converterblock = ({ readonly, amount, currencyid, figure, setfigure, validateCurrency, convertedvalue }) => {
   const colorScheme = useColorScheme();
   const {activeCurrency} = useContext(UserData)
   const {UserAccounts} = useContext(UserData)
@@ -26,8 +26,14 @@ const Converterblock = ({ readonly, amount, currencyid }) => {
   
   
   return (
-    <View       style={[
+    <View style={[
         styles.mybalance,
+        {
+          borderColor: Colors[colorScheme ?? 'light'].borderColor,
+        },
+      ]} >
+            <View       style={[
+        styles.mybalancetwo,
         {
           borderColor: Colors[colorScheme ?? 'light'].borderColor,
         },
@@ -39,13 +45,30 @@ const Converterblock = ({ readonly, amount, currencyid }) => {
         {currencydata?.currency} Balance</Text>
     <Text style={styles.currency} lightColor='#E57F06'>{accounting.formatMoney(currencydata?.balance, currencydata?.symbol)}</Text>
 </View>
+<Text style={{opacity:0.2, fontSize:19}}>|</Text>
 <View style={styles.blocktwo}>
+    { readonly? (<Text style={styles.input} lightColor='#000000'>
+    {accounting.formatMoney(convertedvalue, '')}
+    
+    </Text>) : 
+( <TextInput  textAlign="right"
+  keyboardType="numeric"  
+  style={styles.input}
+   placeholder="0"
+   value={figure}
+   onChangeText={(text) => { setfigure(text);  validateCurrency(text) }}
+   />)
+    }
 
-    <TextInput  textAlign="right"  keyboardType="numeric"  style={styles.input} placeholder="0.00"/>
- <Text style={styles.input} lightColor='#000000'>$</Text>
+    {/* */}
+ <Text style={styles.input} lightColor='#000000'>{currencydata?.symbol}</Text>
+
   
 </View>
     </View>
+         {/* <Text style={{color:'red',textAlign:'right', fontFamily:'Satoshi', fontSize:13}}>two million naira</Text> */}
+    </View>
+
   )
 }
 
@@ -54,15 +77,22 @@ export default Converterblock
 const styles = StyleSheet.create({
     mybalance:{
         padding:10,
+        paddingVertical:13,
         borderWidth: 1,
         borderRadius: 5,
+        gap: 1,
+        flexDirection:'column',
+    justifyContent:'center'
+
+    },
+    mybalancetwo:{
         gap: 10,
         flexDirection:'row',
         alignItems: 'center'
 
     },
     blockone:{
-        width: '40%',
+        width: '39%',
         padding:5,
     
         gap:2,
@@ -89,7 +119,8 @@ alignItems:'center',
     input:{
         fontFamily:'Satoshimid',
 padding:6,
-fontSize:17,
+margin: 2,
+fontSize:15,
     }
 
 })

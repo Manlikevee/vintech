@@ -12,6 +12,10 @@ import Transactions from '@/components/Transactions'
 import { useState, useContext } from 'react';
 import { UserData } from '@/components/Veecontext';
 import Currency from '@/components/Bottomsheets/Currency';
+import Carousel from 'react-native-carousel-banner';
+import {mg1} from '@/assets/images/mg(1).jpg'
+import {mg2} from '@/assets/images/mg(2).jpg'
+import {mg3} from '@/assets/images/mg(3).jpg'
 
 
 
@@ -41,7 +45,11 @@ export default function TabOneScreen() {
   const screenWidth = Dimensions.get('window').width;
   const colorScheme = useColorScheme();
 
+  const DATA = [
+   'https://unsplash.com/photos/5OUMf1Mr5pU/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fGludmVzdHxlbnwwfHx8fDE3MTAzODQwODd8MA&force=true&w=640',
+   'https://unsplash.com/photos/em37kS8WJJQ/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzEwNDM2Njc4fA&force=true&w=640',
 
+  ];
 
   
   return (
@@ -192,6 +200,9 @@ export default function TabOneScreen() {
 
 </View>
 
+<View style={{paddingBottom: 20}}>
+<Carousel data={DATA} roundedSize={5} />
+</View>
 
 
       </ScrollView>

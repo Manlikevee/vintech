@@ -228,10 +228,14 @@ const countryname = useMemo(() => {
     },
   ];
 
+
   const [appearanceMode, setAppearanceMode] = useState("");
   const [activeCurrency, setActiveCurrency] = useState(UserAccounts[0]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const otherCurrencies = UserAccounts.filter(currency => currency.id !== activeCurrency.id);
+  
   const handleButtonPress = () => {
     // Vibrate for 500ms
     Vibration.vibrate(20);
@@ -341,7 +345,8 @@ const countryname = useMemo(() => {
         countries,
         selectedCountryId,
         countryname,
-        fetchData
+        fetchData,
+        otherCurrencies
       }}
     >
       {children}
