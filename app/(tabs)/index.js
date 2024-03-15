@@ -13,9 +13,9 @@ import { useState, useContext } from 'react';
 import { UserData } from '@/components/Veecontext';
 import Currency from '@/components/Bottomsheets/Currency';
 import Carousel from 'react-native-carousel-banner';
-import {mg1} from '@/assets/images/mg(1).jpg'
-import {mg2} from '@/assets/images/mg(2).jpg'
-import {mg3} from '@/assets/images/mg(3).jpg'
+import { router } from "expo-router";
+import mg2 from '@/assets/images/mg(2).jpg'
+import mg3 from '@/assets/images/mg(3).jpg'
 
 
 
@@ -37,7 +37,9 @@ export default function TabOneScreen() {
     setCurrentPage(page);
   };
 
-
+const pushtopage =() =>{
+  router.push("/(auth)/");
+}
 
 
 
@@ -46,8 +48,7 @@ export default function TabOneScreen() {
   const colorScheme = useColorScheme();
 
   const DATA = [
-   'https://unsplash.com/photos/5OUMf1Mr5pU/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fGludmVzdHxlbnwwfHx8fDE3MTAzODQwODd8MA&force=true&w=640',
-   'https://unsplash.com/photos/em37kS8WJJQ/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzEwNDM2Njc4fA&force=true&w=640',
+'../../assets/banner/banner(1).jpg'
 
   ];
 
@@ -65,7 +66,7 @@ export default function TabOneScreen() {
       >
 
         <View style={styles.fd} lightColor="#fbfcfd" darkColor="#000">
-<View style={{ width: '27%'}} lightColor="transparent" darkColor="transparent">
+<View style={{ width: '29%'}} lightColor="transparent" darkColor="transparent">
 <Currency/>
 </View>
 
@@ -112,7 +113,7 @@ export default function TabOneScreen() {
             },]} lightColor="#fff" darkColor="#111111">
 <View style={styles.fdstransparent} lightColor="#transparent" darkColor="transparent">
   <Text style={styles.gtext} lightColor="#00000099" darkColor="#ccc" onPress={handleButtonPress}>Transactions</Text>
-  <Text style={styles.btext} lightColor="#E57F06" darkColor="#E57F06">See all</Text>
+  <Text style={styles.btext} lightColor="#E57F06" darkColor="#E57F06" onPress={pushtopage}>See all</Text>
 </View>
 
 <Transactions/>

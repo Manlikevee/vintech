@@ -38,10 +38,10 @@ const Balance = () => {
       <View style={{flexDirection: 'row', gap: 2, backgroundColor:'transparent', alignItems:'flex-end'}}>
       <Text style={styles.bal} lightColor="#E57F06" darkColor="#ccc">
         
-      {!visibleBalance ? (`${activeCurrency?.symbol} *****`) : (accounting.formatMoney(activeCurrency?.balance, activeCurrency?.symbol)) }</Text>
+      {!visibleBalance ? (`${activeCurrency?.symbol} *****`) : (accounting.formatMoney(activeCurrency?.balance, activeCurrency?.symbol, 0)) }</Text>
       <Text style={styles.balsmall} lightColor="#E57F0666" darkColor="#ccc">
        
-        {!visibleBalance ? ('.**') : ('00') }
+        {!visibleBalance ? ('.**') : ('.00') }
         </Text>
       </View>
 <Ionicons onPress={setfuncvisible}

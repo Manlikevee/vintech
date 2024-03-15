@@ -15,7 +15,7 @@ const index = () => {
   return (
 
     <View style={{ flex: 1,  }}>
-        <Redirect href="/transaction/currencyswap" />
+        {/* <Redirect href="/transaction/alltransactions" /> */}
 <Onboarding
 bottomBarHighlight={false}
 containerStyles={{paddingHorizontal:16,}}

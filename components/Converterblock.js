@@ -31,29 +31,35 @@ const Converterblock = ({ readonly, amount, currencyid, figure, setfigure, valid
         {
           borderColor: Colors[colorScheme ?? 'light'].borderColor,
         },
-      ]} >
+      ]}  lightColor="#fff" darkColor="#111111">
             <View       style={[
         styles.mybalancetwo,
         {
           borderColor: Colors[colorScheme ?? 'light'].borderColor,
         },
       ]}  lightColor="#fff" darkColor="#111111">
-<View style={styles.blockone}>
+<View style={styles.blockone} lightColor="#fff" darkColor="#111111">
   
     <Text style={styles.label} lightColor='#00000099'>
 
         {currencydata?.currency} Balance</Text>
-    <Text style={styles.currency} lightColor='#E57F06'>{accounting.formatMoney(currencydata?.balance, currencydata?.symbol)}</Text>
+    <Text style={styles.currency} lightColor='#E57F06'>{accounting.formatMoney(currencydata?.balance, currencydata?.symbol, 2)}</Text>
 </View>
-<Text style={{opacity:0.2, fontSize:19}}>|</Text>
-<View style={styles.blocktwo}>
+<Text style={{opacity:0.2, fontSize:19}} >|</Text>
+<View style={styles.blocktwo} lightColor="#fff" darkColor="#111111">
     { readonly? (<Text style={styles.input} lightColor='#000000'>
-    {accounting.formatMoney(convertedvalue, '')}
+    {accounting.formatMoney(convertedvalue, '',  2)}
     
     </Text>) : 
 ( <TextInput  textAlign="right"
   keyboardType="numeric"  
-  style={styles.input}
+  maxLength={8}
+  style={[
+    styles.input,
+    {
+      color: Colors[colorScheme ?? 'light'].text,
+    },
+  ]} 
    placeholder="0"
    value={figure}
    onChangeText={(text) => { setfigure(text);  validateCurrency(text) }}

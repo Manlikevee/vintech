@@ -19,7 +19,8 @@ export default function Receiptlayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
     <BottomSheetModalProvider>
     <Stack>
-          <Stack.Screen name="currencyswap" options={{ 
+          <Stack.Screen name="currencyswap" 
+          options={{ 
             headerShown: true
         ,
         headerTitle: '',
@@ -51,6 +52,40 @@ export default function Receiptlayout() {
            }} />
         <Stack.Screen name="index"  options={{ headerShown: false }} />
        <Stack.Screen name="[ref]" options={{ headerShown: false }} />
+       <Stack.Screen name="alltransactions" 
+         options={{ 
+          headerShown: true
+      ,
+      headerTitle: '',
+         headerLeft: () => (
+          <Link href="/modal" asChild>
+            <Pressable>
+              {({ pressed }) => (
+               
+                  <Avatar />
+              
+              )}
+            </Pressable>
+          </Link>
+        ),
+        headerRight: () => (
+          <Link href="/modal" asChild>
+            <Pressable>
+              {({ pressed }) => (
+                <SimpleLineIcons
+                  name="logout"
+                  size={18}
+                  color={Colors[colorScheme ?? "light"].text}
+                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                />
+              )}
+            </Pressable>
+          </Link>
+        ),
+         }} 
+       />
+
+       
     </Stack>
     </BottomSheetModalProvider>
   </GestureHandlerRootView>

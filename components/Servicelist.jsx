@@ -4,15 +4,21 @@ import { Text, View } from '@/components/Themed';
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { EvilIcons, Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 
+const mylogin = (url) => {
+  if(url){
+    router.push(url);
+  }
 
+}
   
 const data = [
-  { name: 'Send', icon: 'arrow-up' },
-  { name: 'Receive', icon: 'arrow-down' },
-  { name: 'Swap', icon: 'retweet' },
-  { name: 'More', icon: 'paperclip' },
+  { name: 'Send', icon: 'arrow-up', url: '' },
+  { name: 'Receive', icon: 'arrow-down', url: '' },
+  { name: 'Swap', icon: 'retweet', url: '/transaction/currencyswap' },
+  { name: 'More', icon: 'paperclip', url: '' },
 ];
 
 
@@ -27,7 +33,8 @@ const renderItem = ({ item, index }) => (
       },]} lightColor="#fff" darkColor="#111111" >
       <Pressable
      style={styles.itemcenter}   
-        onPress={() => console.log(`Item ${index} pressed`)}
+     onPress={() => mylogin(item?.url)}
+
       >
        
           <EvilIcons name={item.icon} size={30} color="#F0B673" style={styles.icon} />
