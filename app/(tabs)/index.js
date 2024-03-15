@@ -38,7 +38,7 @@ export default function TabOneScreen() {
   };
 
 const pushtopage =() =>{
-  router.push("/(auth)/");
+  router.push("/(transaction)/alltransactions");
 }
 
 
