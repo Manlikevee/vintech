@@ -44,6 +44,9 @@ source={require('../../assets/lottieimg/five.json')} autoPlay loop />
       subtitle: 'Register easily in just a few steps. Get started now!',
     },
 
+
+
+    
    
 //     {
 //       backgroundColor: '#90B8F8',
